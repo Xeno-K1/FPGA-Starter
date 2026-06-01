@@ -1,4 +1,4 @@
---with 24MHz Clock
+--with 36MHz Clock
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
