@@ -83,18 +83,18 @@ begin
 			when do => 
 				cnt_next <= cnt_reg + 1;
 				case cnt_reg is
-					when x"0" => data <= x"47"; 	--G
+					when x"0" => data <= x"47"; --G
 					when x"1" => data <= x"41";	--A
-					when x"2" => data <= x"52";
-					when x"3" => data <= x"44";
-					when x"4" => data <= x"20";	-- SPACE
-					when x"5" => data <= x"41";
-					when x"6" => data <= x"63";
-					when x"7" => data <= x"61";
-					when x"8" => data <= x"64";
-					when x"9" => data <= x"65";
-					when x"A" => data <= x"6D";
-					when x"B" => data <= x"79";	--y
+					when x"2" => data <= x"52"; --R
+					when x"3" => data <= x"44"; --D
+					when x"4" => data <= x"20";	--SPACE
+					when x"5" => data <= x"41"; --A
+					when x"6" => data <= x"63"; --C
+					when x"7" => data <= x"61"; --A
+					when x"8" => data <= x"64"; --D
+					when x"9" => data <= x"65"; --E
+					when x"A" => data <= x"6D"; --M
+					when x"B" => data <= x"79";	--Y
 					when others => data <= x"20";
 				end case;
 				if(cnt_reg = 11) then
