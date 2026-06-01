@@ -1,6 +1,6 @@
 # 2x16 LCD
 ## What
-This is a code for 2x16 LCD.
+This is a code for 2x16 Character LCD.
 ## How
 There steps to initialize a 2x16 LCD and then Command it to show the characters we want.
 Each Step is a State in the FSM that is responsible for the whole work.
