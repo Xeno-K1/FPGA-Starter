@@ -5,18 +5,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity LCD is
-    Port ( clk,res : in  STD_LOGIC;
-           rs,rw,en : out  STD_LOGIC;
-           data : out  STD_LOGIC_VECTOR (7 downto 0));
+    Port ( clk,res : in  std_logic;
+           rs,rw,en : out  std_logic;
+           data : out  std_logic_vector (7 downto 0));
 end LCD;
 
 architecture Behavioral of LCD is
-	type state is (init,f1,f2,f3,clr,d_con,em,setDDRAM,do);
-	signal s_reg,s_next : state;
-	signal cnt_next,cnt_reg : unsigned(3 downto 0);
-	signal cnt: unsigned(20 downto 0);
-	signal rs_reg,rs_next : std_logic;
-	signal en_reg: std_logic;
+	type state is (init,f1,f2,f3,clr,d_con,em,setDDRAM,do);		--States
+	signal s_reg,s_next : state;	--State Signals
+	signal cnt_next,cnt_reg : unsigned(3 downto 0);	--Counters for Output Characters
+	signal cnt: unsigned(20 downto 0);	--Counter for Timing
+	signal rs_reg,rs_next : std_logic;	--RS Signal for RS pin
+	signal en_reg: std_logic;			--Enable Signal for en pin
 	
 begin
 	process(clk)
@@ -30,12 +30,12 @@ begin
 				en_reg <= '1';
 			else
 				cnt <= cnt + 1;
-				if(cnt = 36000) then
+				if(cnt = 36000) then		--F/1000 = 36000 (1ms)
 					if(cnt_reg < 12) then
 						en_reg <= '0';
 					end if;
 				end if;
-				if(cnt = 72000) then
+				if(cnt = 72000) then		--F/500 = 72000 (2ms)
 					s_reg <= s_next;
 					cnt_reg <= cnt_next;
 					rs_reg <= rs_next;
@@ -98,9 +98,9 @@ begin
 					when others => data <= x"20";
 				end case;
 				if(cnt_reg = 11) then
-					s_next <= init;
-					rs_next <= '1';			--these two line can be un commented so it goes to init but it doesnt write by not toggling the en
---					rs_next <= '0';			--this or above two lines, this goes to read mode now writing anymore even if en is toggling
+					s_next <= init;			--Goes to init state
+					rs_next <= '1';			--this line can be commented so it goes to init but it doesnt write by not toggling the en
+--					rs_next <= '0';			--this or above two lines, this goes to read mode now, not writing anymore even if en is toggling
 				end if;
 		end case;
 	end process;
