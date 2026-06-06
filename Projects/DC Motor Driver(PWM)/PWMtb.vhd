@@ -10,7 +10,7 @@ ARCHITECTURE behavior OF PWMtb IS
  
     COMPONENT PWM
     PORT(
-         Press : IN  std_logic;
+         dir_press : IN  std_logic;
          clk : IN  std_logic;
          res : IN  std_logic;
          data : IN  std_logic_vector(7 downto 0);
